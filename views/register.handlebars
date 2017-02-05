@@ -1,0 +1,46 @@
+<h2>Register</h2>
+<form id="registration-form" method="post" action="/register">
+  <div>
+    <label class="form-label" for="firstname">First Name</label>
+    <input class="form-input" type="text" id="firstname" name="firstName" placeholder="First Name" aria-required="true" value="{{firstName}}">
+  </div>
+  <div>
+    <label class="form-label" for="lastname">Last Name</label>
+    <input class="form-input" type="text" id="lastname" name="lastName" placeholder="Last Name" aria-required="true" value={{lastName}}>
+  </div>
+  <div>
+    <label class="form-label" for="email">Email</label>
+    <input class="form-input" type="email" id="email" name="email" placeholder="Email" aria-required="true" value={{email}}>
+  </div>
+  <div>
+    <label class="form-label" for="username">Username</label>
+    <input class="form-input" id="username" name="username" type="text" placeholder="Username" aria-required="true" value="{{username}}">
+  </div>
+  <div>
+    <label class="form-label" for="password">Password</label>
+    <input class="form-input" id="password" name="password" type="password" placeholder="Password" aria-required="true">
+  </div>
+  <div>
+    <label class="form-label" for="confirmPassword">Confirm Password</label>
+    <input class="form-input" type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" aria-required="true">
+  </div>
+  <div class="radio">
+    {{#if male}}
+      <input type="radio" id="male" name="gender" value="male" aria-required="true" checked="true">
+      <label for="male">Male</label>
+      <input type="radio" id="female" name="gender" value="female" aria-required="true">
+      <label for="female">Female</label>
+    {{else if female}}
+      <input type="radio" id="male" name="gender" value="male" aria-required="true">
+      <label for="male">Male</label>
+      <input type="radio" id="female" name="gender" value="female" aria-required="true" checked="true">
+      <label for="female">Female</label>
+    {{else}}
+      <input type="radio" id="male" name="gender" value="male" aria-required="true">
+      <label for="male">Male</label>
+      <input type="radio" id="female" name="gender" value="female" aria-required="true">
+      <label for="female">Female</label>
+    {{/if}}
+  </div>
+  <input class="submit-btn" type="submit" value="Submit">
+</form>

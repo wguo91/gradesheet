@@ -1,0 +1,98 @@
+"use strict";
+var mongoose = require("mongoose");
+var bcrypt = require("bcryptjs");
+var Schema = mongoose.Schema;
+
+var UserSchema = Schema({
+  username: {
+    type: String,
+    unique: true,
+    required: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  email: {
+    type: String,
+    lowercase: true,
+    unique: true,
+    required: true
+  },
+  firstName: {
+    type: String,
+    required: true
+  },
+  lastName: {
+    type: String,
+    required: true
+  },
+  gender: {
+    type: String,
+    required: true
+  },
+  avatar: {
+    img: {
+      encodedData: String,
+      mimetype: String
+    }
+  },
+  admin: {
+    type: Boolean,
+    required: true
+  }
+},
+{
+  // assigns createdAt and updatedAt fields to schema
+  timestamps: true
+});
+
+var User = mongoose.model("User", UserSchema);
+module.exports = User;
+module.exports.createUser = function(newUser, callback) {
+  // generate a salt with 10 rounds
+  bcrypt.genSalt(10, function(err, salt) {
+    if(err) return next(err);
+    bcrypt.hash(newUser.password, salt, function(err, hash) {
+      if(err) return next(err);
+      newUser.password = hash;
+      newUser.save(callback);
+    });
+  })
+};
+
+module.exports.getUserByUsername = function(username, callback) {
+  User.findOne({username: username}, callback);
+};
+
+module.exports.getUserById = function(id, callback) {
+  User.findById(id, callback);
+};
+
+module.exports.comparePassword = function(candidatePassword, hash, callback) {
+  bcrypt.compare(candidatePassword, hash, function(err, isMatch) {
+    if(err) return next(err);
+    else callback(null, isMatch);
+  });
+};
+
+module.exports.isCurrentPassword = function(username, candidatePassword, callback) {
+  User.findOne({username: username}, function(err, user) {
+    User.comparePassword(candidatePassword, user.password, callback);
+  });
+};
+
+module.exports.updatePassword = function(username, candidatePassword, callback) {
+  bcrypt.genSalt(10, function(err, salt) {
+    bcrypt.hash(candidatePassword, salt, function(err, hash) {
+      if(err) return next(err);
+      User.update({username: username}, {
+        password: hash
+      }, callback);
+    });
+  })
+}
+
+module.exports.getLastFiveEntries = function(callback) {
+  User.find({}, null, {sort: "-createdAt", limit: 5}, callback);
+}

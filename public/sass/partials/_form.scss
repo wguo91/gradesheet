@@ -1,0 +1,102 @@
+@import "_base";
+/**********************************
+* FORMS (REGISTRATION, LOGIN,
+* UPDATE, ASSIGNMENT, STUDENT)
+**********************************/
+#registration-form,
+#login-form,
+#update-form,
+#assignment-form,
+#student-form {
+  .radio {
+    margin: 0.5em 0;
+    display: flex;
+    label {
+      background-color: $light-gray;
+      color: $white;
+      font-size: 1em;
+      flex-grow: 1;
+      padding: 0.5em;
+    }
+    label:first-of-type {
+      border: 0.1em solid $white;
+      border-radius: 0.5em 0 0 0.5em;
+    }
+    label:last-of-type {
+      border: 0.1em solid $white;
+      border-radius: 0 0.5em 0.5em 0;
+    }
+    input {
+      display: none;
+    }
+    input:checked + label {
+      @include whiteOnDarkBlue();
+    }
+  }
+  .checkbox {
+    margin: 0.5em 0;
+    display: flex;
+    label {
+      background-color: $light-gray;
+      color: $white;
+      font-size: 1em;
+      flex-grow: 1;
+      padding: 0.5em;
+    }
+    input {
+      display: none;
+    }
+    input:checked + label {
+      @include whiteOnDarkBlue();
+    }
+  }
+  .form-label {
+    display: none;
+  }
+  .form-input {
+    font-size: $input-font-size;
+    box-sizing: border-box;
+    padding: 0.5em;
+    margin: 0.5em 0;
+    width: 100%;
+  }
+  .submit-btn {
+    @include whiteOnDarkBlue();
+    font-size: $input-font-size;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    margin: 1em 0;
+    border: none;
+    padding: 0.75em 1.25em;
+    border-radius: 0.2em;
+    :hover,
+    :focus {
+      background-color: $dark-blue-hover;
+    }
+  }
+}
+/* for buttons */
+#update-form,
+#student-form {
+  text-align: center;
+}
+#assignment-form {
+  h4 {
+    text-align: left;
+    margin-top: 1em;
+  }
+  .grade-container {
+    background-color: $cyan;
+    padding: 1em;
+    color: white;
+    margin: 0.5em 0;
+    text-align: left;
+    .grade-entry {
+      text-align: left;
+      display: flex;
+      input {
+        margin-right: 0.25em;
+      }
+    }
+  }
+}

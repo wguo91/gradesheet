@@ -1,0 +1,59 @@
+<h2>Dashboard</h2>
+<h3>Welcome, {{{user.firstName}}}!</h3>
+{{#if user.admin}}
+  <section class="dashboard">
+    <h4>Newly Registered Students</h4>
+    {{#each users}}
+      {{#if this.admin}}
+      {{else}}
+      <div class="entry">
+        <img src="data:{{this.avatar.img.mimetype}};base64,{{this.avatar.img.encodedData}}">
+        <aside>
+          <p>{{this.lastName}}, {{this.firstName}}</p>
+          <a class="grades-link" href="/users/grades/{{id}}">View grades</a>
+          <p>Username: {{this.username}}</p>
+          <p>Email: {{this.email}}</p>
+        </aside>
+      </div>
+      {{/if}}
+    {{/each}}
+  </section>
+  <section class="dashboard">
+    <h4>Other Options</h4>
+    <div class="options-container">
+      <div class="options">
+        <h5>Manage Students</h5>
+        <ul>
+          <li>
+            <a href="/users/students/view">View all enrolled students</a>
+          </li>
+          <li>
+            <a href="/users/students/add">Enroll a student</a>
+          </li>
+          <li>
+            <a href="/users/students/remove">Drop a student</a>
+          </li>
+        </ul>
+      </div>
+      <div class="options">
+        <h5>Manage Grades</h5>
+        <ul>
+          <li>
+            <a href="/users/assignments/view">View all assignments</a>
+          </li>
+          <li>
+            <a href="/users/assignments/add">Add an assignment</a>
+          </li>
+          <li>
+            <a href="/users/assignments/remove">Remove an assignment</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  {{else}}
+  <section class="dashboard">
+    <h4>Grades</h4>
+    <p>Wow, you failed already.</p>
+  </section>
+  {{/if}}

@@ -1,0 +1,122 @@
+@import "_base";
+/**********************************
+ * GENERAL
+ **********************************/
+html {
+  height: 100%;
+  body {
+    font-family: $font-stack;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    .wrapper {
+      min-height: 100%;
+      position: relative;
+    }
+    .app-title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        padding: 0 0.5em;
+      }
+    }
+    .capitalize {
+      text-transform: capitalize;
+    }
+  }
+}
+/**********************************
+ * HEADER
+ **********************************/
+header {
+  background-color: $dark-blue;
+  ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    li {
+      display: inline-block;
+      text-align: center;
+      img {
+        display: block;
+        padding: 0 1em;
+      }
+      a {
+        color: $white;
+        padding: 1em;
+        display: block;
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+      a:hover,
+      a:focus {
+        background-color: $dark-blue-hover;
+      }
+    }
+    li:first-child {
+      flex-grow: 1;
+    }
+  }
+}
+/**********************************
+ * MAIN
+ **********************************/
+.main-container {
+  padding: 1.5em;
+  padding-bottom: 104px; /* NOTE: I hate this hack */
+  text-align: center;
+  h1 {
+    font-size: $h1-font-size;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  h2 {
+    font-size: $h2-font-size;
+    margin: 0.5em 0;
+  }
+  h3 {
+    font-size: $h3-font-size;
+    text-align: center;
+    margin: 0.5em 0;
+  }
+  h4 {
+    font-size: $h4-font-size;
+  }
+  h5 {
+    font-size: $h5-font-size;
+  }
+}
+/**********************************
+* FLASH MESSAGES
+**********************************/
+.message {
+  .success {
+    background-color: $success-green;
+    text-align: center;
+    margin: 1em auto;
+    border-radius: 0.2em;
+    width: 80%;
+    padding: 1em;
+  }
+  .error {
+    background-color: $error-red;
+    text-align: left;
+    margin: 1em auto;
+    border-radius: 0.2em;
+    width: 80%;
+    padding: 1em;
+    ul {
+      list-style-position: outside;
+      margin-left: 1em;
+      li {
+        margin: 0.2em 0;
+      }
+    }
+  }
+  .error.center {
+    text-align: center;
+  }
+}

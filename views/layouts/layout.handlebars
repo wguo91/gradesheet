@@ -1,0 +1,67 @@
+<!doctype HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shorcut icon" href="/images/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <title>{{{title}}}</title>
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:400,700" rel="stylesheet">
+  </head>
+  <body>
+    <div class="wrapper">
+      <header class="header-container">
+        <nav>
+          <ul>
+            <li><img src="/images/gradesheet32.png" alt="gradesheet-logo"></li>
+            {{#if user}}
+              <li><a href="/users">{{user.firstName}}</a></li>
+              <li><a href="/users/settings">Settings</a></li>
+              <li><a href="/logout">Logout</a></li>
+            {{else}}
+              <li><a href="/login">Login</a></li>
+              <li><a href="/register">Register</a></li>
+            {{/if}}
+          </ul>
+        </nav>
+      </header>
+      <div class="main-container">
+        <div class="app-title">
+          <img src="/images/gradesheet.png" alt="gradesheet-logo">
+          <h1>Gradesheet</h1>
+        </div>
+        {{!-- error messages --}}
+        <div class="message">
+          {{#if success_msg}}
+            <div class="success">{{success_msg}}</div>
+          {{/if}}
+          {{#if error_msg}}
+            <div class="error center" role="alert">{{error_msg}}</div>
+          {{/if}}
+          {{#if error}}
+            <div class="error center" role="alert">{{error}}</div>
+          {{/if}}
+          {{!-- registration/update errors --}}
+          {{#if errors}}
+            <div class="error" role="alert">
+              <p>Please correct the following errors:</p>
+              <ul>
+                {{#each errors}}
+                  <li>{{msg}}</li>
+                {{/each}}
+              </ul>
+            </div>
+          {{/if}}
+        </div>
+        <main>
+          {{{body}}}
+        </main>
+      </div>
+      <div class="footer-container">
+        <p>&copy; 2017 Wilson Guo</p>
+        <p>Notice any bugs or errors? Please contact me at <a href="mailto:wguo91@gmail.com">wguo91@gmail.com</a>.</p>
+      </div>
+    </div>
+  </body>
+</html>

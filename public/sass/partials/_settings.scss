@@ -1,0 +1,45 @@
+@import "partials/_base";
+/**********************************
+* SETTINGS
+**********************************/
+.settings-container {
+  text-align: left;
+  .settings {
+    padding: 0.5em;
+    border: 0.1em solid $black;
+    section {
+      margin-bottom: 1em;
+      display: flex;
+      aside {
+        font-size: $info-font-size;
+        padding: 0.5em 1em;
+        #upload-avatar-form input {
+          display: none;
+        }
+      }
+      .avatar {
+        @include widthHeight(100px, 100px);
+        min-width: 100px;
+        min-height: 100px;
+      }
+    }
+    #section-b div {
+      flex-grow: 1;
+    }
+    #section-d div {
+      flex-grow: 1;
+    }
+  }
+  .update-settings {
+    h5 {
+      text-align: center;
+      padding: 1em;
+    }
+  }
+  h4 {
+    @include whiteOnDarkBlue();
+    text-align: center;
+    padding: 0.5em 0;
+    letter-spacing: 0.05em;
+  }
+}

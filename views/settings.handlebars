@@ -1,0 +1,47 @@
+<h2>Settings</h2>
+<section class="settings-container">
+  <h4>Profile</h4>
+  <div class="settings">
+    <section id="section-a">
+      <img class="avatar" src="data:{{user.avatar.img.mimetype}};base64,{{user.avatar.img.encodedData}}">
+      <aside>
+        <p>{{user.firstName}} {{user.lastName}}</p>
+        <p>{{user.gender}}</p>
+        <form id="upload-avatar-form" method="post" enctype="multipart/form-data" action="/users/settings/upload">
+          <a id="upload-avatar" href="">Change Avatar</a>
+          <p>(Avatars must be 100x100)</p>
+          <input type="file" id="avatar" name="avatar">
+        </form>
+      </aside>
+    </section>
+    <section id="section-b">
+      <div>
+        <h5>Username</h5>
+        <p>{{user.username}}</p>
+        <a href="/users/settings/update/username">Update username</a>
+      </div>
+      <div>
+        <h5>Email Address</h5>
+        <p>{{user.email}}</p>
+        <a href="/users/settings/update/email">Update email address</a>
+      </div>
+    </section>
+    <section id="section-c">
+      <div>
+        <h5>Password</h5>
+        <a href="/users/settings/update/password">Update password</a>
+      </div>
+    </section>
+    {{#if user.admin}}
+    <section id="section-d">
+      <div>
+        <h5>Administrator Options</h5>
+        <a href="#">View all enrolled students</a><br>
+        <a href="#">Enroll a student</a><br>
+        <a href="#">Drop a student</a>
+      </div>
+    </section>
+    {{/if}}
+  </div>
+</section>
+<script src="/js/main.js"></script>

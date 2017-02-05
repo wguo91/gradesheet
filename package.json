@@ -1,0 +1,45 @@
+{
+  "name": "balance",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "grunt",
+    "start": "node app.min.js"
+  },
+  "repository": {
+  "type": "git",
+  "url": "git+https://github.com/wguo91/gradesheet.git"
+  },
+  "author": "Wilson Guo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wguo91/gradesheet/issues"
+  },
+  "homepage": "https://github.com/wguo91/gradesheet#readme",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.0",
+    "body-parser": "^1.16.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "express-handlebars": "^3.0.0",
+    "express-messages": "^1.0.1",
+    "express-session": "^1.14.2",
+    "express-validator": "^3.1.2",
+    "grunt": "^1.0.1",
+    "grunt-cli": "^1.2.0",
+    "grunt-contrib-cssmin": "^1.0.2",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "jshint": "^2.9.4",
+    "mongoose": "^4.7.7",
+    "morgan": "^1.7.0",
+    "multer": "^1.2.1",
+    "passport": "^0.3.2",
+    "passport-http": "^0.3.0",
+    "passport-local": "^1.0.0"
+  }
+}

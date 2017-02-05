@@ -1,0 +1,56 @@
+@import "_base";
+/**********************************
+ * DASHBOARD/STUDENTS
+ **********************************/
+.dashboard {
+  text-align: left;
+  font-size: 1em;
+  margin-bottom: 1em;
+  h4 {
+    @include whiteOnDarkBlue();
+    font-size: $h4-font-size;
+    text-align: center;
+    letter-spacing: 0.05em;
+    padding: 0.5em 0;
+  }
+  .entry {
+    border: 0.1em solid $black;
+    padding: 0.5em;
+    display: flex;
+    img {
+      @include widthHeight(100px, 100px);
+      min-height: 100px;
+      min-width: 100px;
+    }
+    aside {
+      font-size: $info-font-size;
+      padding: 0.5em 1em;
+      .grades-link {
+        font-weight: bold;
+        text-decoration: none;
+      }
+      .grades-link:hover,
+      .grades-link:focus {
+        text-color: $dark-blue-hover;
+      }
+    }
+  }
+  .options-container {
+    border: 0.1em solid $black;
+    padding: 0.5em;
+    display: flex;
+    .options {
+      flex-grow: 1;
+      ul {
+        list-style-type: none;
+      }
+    }
+  }
+  a {
+    color: $dark-blue;
+  }
+  a:hover,
+  a:focus {
+    color: $dark-blue-hover;
+  }
+}

@@ -1,0 +1,14 @@
+@import "_base";
+/**********************************
+ * FOOTER
+ **********************************/
+.footer-container {
+  @include positionBottomLeft(absolute, 0, 0);
+  @include whiteOnDarkBlue();
+  text-align: center;
+  padding: 1em 0;
+  width: 100%;
+  a {
+    color: $white;
+  }
+}

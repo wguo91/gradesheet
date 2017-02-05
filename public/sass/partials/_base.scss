@@ -1,0 +1,37 @@
+/* font-related variables */
+$font-stack: "PT Sans", sans-serif;
+$h1-font-size: 3em;
+$h2-font-size: 2.5em;
+$h3-font-size: 2em;
+$h4-font-size: 1.5em;
+$h5-font-size: 1.25em;
+$input-font-size: 1em;
+$info-font-size: 1em;
+
+/* colors */
+$black: #000000;
+$white: #FFFFFF;
+$dark-blue: #2E587F;
+$dark-blue-hover: #427FB7;
+$white-gray: #F2F2F2;
+$light-gray: #D3D3D3;
+$cyan: #32BEA6;
+$success-green: #B2DBA1;
+$error-red: #DCA7A7;
+
+/* mixins */
+@mixin positionBottomLeft($position, $bottom, $left) {
+  position: $position;
+  bottom: $bottom;
+  left: $left;
+}
+
+@mixin widthHeight($width, $height) {
+  width: $width;
+  height: $height;
+}
+
+@mixin whiteOnDarkBlue() {
+  background-color: $dark-blue;
+  color: $white;
+}
