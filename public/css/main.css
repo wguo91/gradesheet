@@ -259,16 +259,16 @@ header {
 #assignment-form h4 {
   text-align: left;
   margin-top: 1em; }
-#assignment-form .grade-container {
+#assignment-form .score-container {
   background-color: #32BEA6;
   padding: 1em;
   color: white;
   margin: 0.5em 0;
   text-align: left; }
-  #assignment-form .grade-container .grade-entry {
+  #assignment-form .score-container .score-entry {
     text-align: left;
     display: flex; }
-    #assignment-form .grade-container .grade-entry input {
+    #assignment-form .score-container .score-entry input {
       margin-right: 0.25em; }
 
 /* font-related variables */
@@ -319,6 +319,33 @@ header {
   .dashboard a:hover,
   .dashboard a:focus {
     color: #427FB7; }
+  .dashboard .grades-container {
+    margin-bottom: 1em;
+    padding: 0.5em; }
+    .dashboard .grades-container h2.grades-title {
+      background-color: #2E587F;
+      color: #FFFFFF;
+      text-align: center;
+      margin: 0;
+      padding: 0.5em 0.25em; }
+    .dashboard .grades-container table {
+      width: 100%;
+      height: 100%;
+      border: 0.1em solid #D3D3D3;
+      border-collapse: collapse; }
+      .dashboard .grades-container table tr th {
+        background-color: #32BEA6;
+        color: white;
+        border: 0.1em solid #D3D3D3;
+        padding: 0.5em; }
+      .dashboard .grades-container table tr td {
+        border: 0.1em solid #D3D3D3;
+        padding: 0.5em; }
+      .dashboard .grades-container table tr:nth-child(even) {
+        background-color: #F2F2F2; }
+      .dashboard .grades-container table .grade-display {
+        text-align: right;
+        font-weight: bold; }
 
 /* font-related variables */
 /* colors */
@@ -374,6 +401,36 @@ header {
 /* font-related variables */
 /* colors */
 /* mixins */
+/**********************************
+* GRADES
+**********************************/
+.grades-container {
+  margin-bottom: 1em; }
+  .grades-container table {
+    width: 100%;
+    height: 100%;
+    border: 0.1em solid #D3D3D3;
+    border-collapse: collapse; }
+    .grades-container table tr th {
+      background-color: #32BEA6;
+      color: white;
+      border: 0.1em solid #D3D3D3;
+      padding: 0.5em; }
+    .grades-container table tr td {
+      border: 0.1em solid #D3D3D3;
+      padding: 0.5em; }
+    .grades-container table tr:nth-child(even) {
+      background-color: #F2F2F2; }
+    .grades-container table .grade-display {
+      text-align: right;
+      font-weight: bold; }
+
+/* font-related variables */
+/* colors */
+/* mixins */
+/**********************************
+* STUDENTS
+**********************************/
 .students-container {
   text-align: left;
   font-size: 1em;
@@ -428,6 +485,8 @@ header {
       border: 0.1em solid #FFFFFF;
       border-radius: 0 0.5em 0.5em 0; }
   .students-container div h4 {
+    background-color: #FFFFFF;
+    color: #000000;
     text-align: center; }
 
 /* font-related variables */

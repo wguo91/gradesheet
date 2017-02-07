@@ -11,7 +11,7 @@ module.exports.initialize = function() {
   var bitmapFemale = fs.readFileSync(path.join(__dirname + "/../public/images/woman-1.png"));
   var base64dataMale = bitmapMale.toString("base64");
   var base64dataFemale = bitmapFemale.toString("base64");
-
+/*
   var newUser = User({
     firstName: "Wilson",
     lastName: "Guo",
@@ -32,7 +32,7 @@ module.exports.initialize = function() {
     if(err) throw err;
   });
 
-  var newUser = User({
+  newUser = User({
     firstName: "Jackson",
     lastName: "Guo",
     gender: "Male",
@@ -172,6 +172,7 @@ module.exports.initialize = function() {
     if(err) throw err;
   });
   console.log("Successfully initialized database.");
+  */
 };
 
 module.exports.clearDatabase = function() {
@@ -184,10 +185,10 @@ module.exports.clearDatabase = function() {
     if(err) throw err;
     console.log("Successfully cleared Assignments.");
   });
-  */
+
   User.remove({}, function(err) {
     if(err) throw err;
     console.log("Successfully cleared Users.");
   });
-
-}
+  */
+};

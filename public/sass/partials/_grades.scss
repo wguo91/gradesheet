@@ -1,0 +1,31 @@
+@import "_base";
+/**********************************
+* GRADES
+**********************************/
+.grades-container {
+  margin-bottom: 1em;
+  table {
+    @include widthHeight(100%, 100%);
+    border: 0.1em solid $light-gray;
+    border-collapse: collapse;
+    tr {
+      th {
+        background-color: $cyan;
+        color: white;
+        border: 0.1em solid $light-gray;
+        padding: 0.5em;
+      }
+      td {
+        border: 0.1em solid $light-gray;
+        padding: 0.5em;
+      }
+    }
+    tr:nth-child(even) {
+      background-color: $white-gray;
+    }
+    .grade-display {
+      text-align: right;
+      font-weight: bold;
+    }
+  }
+}

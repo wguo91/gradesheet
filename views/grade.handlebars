@@ -1,0 +1,28 @@
+{{#if user.admin}}
+<h2>Grades for {{lastName}}, {{firstName}}</h2>
+<section class="grades-container">
+  {{#if asgts}}
+  <table>
+    <tr>
+      <th>Assignment</th>
+      <th>Grade</th>
+      <th>Class Average</th>
+    </tr>
+    {{#each asgts}}
+    <tr>
+      <td>{{name}}</td>
+      <td>{{grade}}%</td>
+      <td>{{lookup ../avgArray @index}}%</td>
+    </tr>
+    {{/each}}
+    <tr class="grade-display">
+      <td colspan="3">Overall Grade: {{overallGrade}}%</td>
+    </tr>
+  </table>
+  {{else}}
+  <div>
+    <h4>You have no graded assignments.</h4>
+  </div>
+  {{/if}}
+</section>
+{{/if}}

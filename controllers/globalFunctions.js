@@ -19,6 +19,23 @@ module.exports.ensureAdmin = function(req, res, next) {
   }
 };
 
+module.exports.getAvgArray = function(collections) {
+  var avgArray = [];
+  for(var i = 0; i < collections.length; i++) {
+    avgArray.push(collections[i].gradeAverage.toFixed(2));
+  }
+  return avgArray;
+};
+
+// gradePercentage not implemented yet
+module.exports.calcGrade = function(asgts, gradePercentage) {
+  var sum = 0;
+  for(var i = 0; i < asgts.length; i++) {
+    sum += asgts[i].grade;
+  }
+  return (sum / (asgts.length)).toFixed(2);
+};
+
 module.exports.compLastName = function(a, b) {
   var lastNameA = a.lastName.toLowerCase();
   var lastNameB = b.lastName.toLowerCase();
@@ -121,4 +138,4 @@ module.exports.registrationValidation = function(req, res) {
     }
   });
   return req;
-}
+};

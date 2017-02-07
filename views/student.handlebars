@@ -48,7 +48,7 @@
         <label for="female">Female</label>
       {{/if}}
     </div>
-    <input class="submit-btn" type="submit" value="Submit">
+    <input class="submit-btn" type="submit" value="Add student">
   </form>
   {{else if isRemove}}
     {{#if students}}
@@ -60,7 +60,7 @@
       <p>Please select the student(s) you wish to remove.</p>
       {{#each students}}
       <div class="checkbox">
-        <input type="checkbox" name="{{id}}" id="{{id}}" value="checked">
+        <input type="checkbox" name="{{_id}}" id="{{_id}}" value="checked">
         <label for="{{_id}}">
           {{lastName}}, {{firstName}}<br>
           Username: {{username}}<br>
@@ -68,7 +68,7 @@
         </label>
       </div>
       {{/each}}
-      <input type="submit" class="submit-btn" value="Save Changes">
+      <input type="submit" class="submit-btn" value="Remove selected students">
     </form>
     {{else}}
     <div>
@@ -80,21 +80,23 @@
     <a href="/users/students/add">Add a student</a>
     <a href="/users/students/remove">Remove a student</a>
   </section>
+  {{#if students}}
   <h4>Enrolled Students</h4>
-    {{#each students}}
-    <div class="entry">
-      <img src="data:{{this.avatar.img.mimetype}};base64,{{this.avatar.img.encodedData}}">
-      <aside>
-        <p>{{lastName}}, {{firstName}} </p>
-        <a class="grades-link" href="/users/grades/{{username}}">View grades</a>
-        <p>Username: {{username}}</p>
-        <p>Email: {{email}}</p>
-      </aside>
-    </div>
-    {{else}}
-    <div>
-      <h4>There are no students enrolled.</h4>
-    </div>
-    {{/each}}
+  {{#each students}}
+  <div class="entry">
+    <img src="data:{{this.avatar.img.mimetype}};base64,{{this.avatar.img.encodedData}}">
+    <aside>
+      <p>{{lastName}}, {{firstName}} </p>
+      <a class="grades-link" href="/users/grades/{{username}}">View grades</a>
+      <p>Username: {{username}}</p>
+      <p>Email: {{email}}</p>
+    </aside>
+  </div>
+  {{/each}}
+  {{else}}
+  <div>
+    <h4>There are no enrolled students.</h4>
+  </div>
+  {{/if}}
   {{/if}}
 </section>

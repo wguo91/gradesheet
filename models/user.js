@@ -52,13 +52,13 @@ module.exports = User;
 module.exports.createUser = function(newUser, callback) {
   // generate a salt with 10 rounds
   bcrypt.genSalt(10, function(err, salt) {
-    if(err) return next(err);
+    if(err) throw err;
     bcrypt.hash(newUser.password, salt, function(err, hash) {
-      if(err) return next(err);
+      if(err) throw err;
       newUser.password = hash;
       newUser.save(callback);
     });
-  })
+  });
 };
 
 module.exports.getUserByUsername = function(username, callback) {
@@ -71,7 +71,7 @@ module.exports.getUserById = function(id, callback) {
 
 module.exports.comparePassword = function(candidatePassword, hash, callback) {
   bcrypt.compare(candidatePassword, hash, function(err, isMatch) {
-    if(err) return next(err);
+    if(err) throw err;
     else callback(null, isMatch);
   });
 };
@@ -85,14 +85,14 @@ module.exports.isCurrentPassword = function(username, candidatePassword, callbac
 module.exports.updatePassword = function(username, candidatePassword, callback) {
   bcrypt.genSalt(10, function(err, salt) {
     bcrypt.hash(candidatePassword, salt, function(err, hash) {
-      if(err) return next(err);
+      if(err) throw err;
       User.update({username: username}, {
         password: hash
       }, callback);
     });
-  })
-}
+  });
+};
 
-module.exports.getLastFiveEntries = function(callback) {
-  User.find({}, null, {sort: "-createdAt", limit: 5}, callback);
-}
+module.exports.getFiveStudents = function(callback) {
+  User.find({admin: false}, null, {sort: "-createdAt", limit: 5}, callback);
+};

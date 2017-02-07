@@ -38,19 +38,21 @@ function calculateAverageGrade(asgtArray, totalPoints) {
  * array which will then be passed into mongoose for a batch insert
  */
 function constructAsgtArray(students, requestBody, asgtName) {
-  var arr = [], lookupStr, score, grade, _id;
+  var arr = [], lookupStr, score, grade, studentId;
   for(var i = 0; i < students.length; i++) {
     // construct lookup string
-    _id = students[i]._id;
-    score = requestBody[_id];
+    studentId = students[i]._id;
+    score = requestBody[studentId];
     grade = ((score / (requestBody.totalPoints)) * ONE_HUNDRED).toFixed(2);
     // if score field is left blank, default value is zero
     if(score.trim() === "") score = 0;
     else Number.parseFloat(score);
+    console.log(students[i].firstName + " " + students[i].lastName);
+    console.log("completedBy object _id is " + students[i]._id);
     arr.push({
       name: asgtName,
       completedBy: {
-        _id: students[i]._id,
+        studentId: students[i]._id,
         firstName: students[i].firstName,
         lastName: students[i].lastName
       },
@@ -122,12 +124,13 @@ router.get("/:operation", ensureAuth, ensureAdmin, function(req, res) {
         var asgtNameArr = [];
         var totalPointsArr = [];
         for(var i = 0; i < collection.length; i++) {
-          //console.log("collections["+i+"].asgtList[0].score " + collection[i].asgtList[0].score);
-          asgtListArr.push(collection[i].asgtList);
-          asgtNameArr.push(collection[i].name);
-          gradeAverageArr.push(collection[i].gradeAverage.toFixed(2));
-          gradePercentageArr.push(collection[i].gradePercentage);
-          totalPointsArr.push(collection[i].totalPoints);
+          if(collection[i].asgtList.length > 0) {
+            asgtListArr.push(collection[i].asgtList);
+            asgtNameArr.push(collection[i].name);
+            gradeAverageArr.push(collection[i].gradeAverage.toFixed(2));
+            gradePercentageArr.push(collection[i].gradePercentage);
+            totalPointsArr.push(collection[i].totalPoints);
+          }
         }
         res.render("assignment", {
           operation: operation,
@@ -224,8 +227,6 @@ router.post("/:operation", ensureAuth, ensureAdmin, function(req, res) {
         var id = idList[i];
         (function(id) {
           Collection.findOne({_id: id}, function(err, collection) {
-            console.log("collection: " + collection);
-            console.log("collection.name: " + collection.name);
             Assignment.remove({name: collection.name}, function(err) {
               if(err) throw err;
             });

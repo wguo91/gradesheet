@@ -1,4 +1,7 @@
 @import "_base";
+/**********************************
+* STUDENTS
+**********************************/
 .students-container {
   text-align: left;
   font-size: 1em;
@@ -62,6 +65,8 @@
     }
   }
   div h4 {
+    background-color: $white;
+    color: $black;
     text-align: center;
   }
 }

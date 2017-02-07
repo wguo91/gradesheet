@@ -53,4 +53,38 @@
   a:focus {
     color: $dark-blue-hover;
   }
+  .grades-container {
+    margin-bottom: 1em;
+    padding: 0.5em;
+    h2.grades-title {
+      @include whiteOnDarkBlue();
+      text-align: center;
+      margin: 0;
+      padding: 0.5em 0.25em;
+    }
+    table {
+      @include widthHeight(100%, 100%);
+      border: 0.1em solid $light-gray;
+      border-collapse: collapse;
+      tr {
+        th {
+          background-color: $cyan;
+          color: white;
+          border: 0.1em solid $light-gray;
+          padding: 0.5em;
+        }
+        td {
+          border: 0.1em solid $light-gray;
+          padding: 0.5em;
+        }
+      }
+      tr:nth-child(even) {
+        background-color: $white-gray;
+      }
+      .grade-display {
+        text-align: right;
+        font-weight: bold;
+      }
+    }
+  }
 }

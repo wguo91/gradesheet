@@ -8,4 +8,4 @@ window.onload = function() {
     evt.preventDefault();
     document.getElementById("avatar").click();
   }
-}
+};

@@ -4,6 +4,8 @@ var LocalStrategy = require("passport-local").Strategy;
 var User = require("../models/user");
 
 passport.use(new LocalStrategy(function(username, password, done) {
+  if(username === "" && password === "")
+    return done(null, false, "Please enter your username and password to login.");
   User.getUserByUsername(username, function(err, user) {
     if(err) return done(err);
     if(!user) return done(null, false, {message: "User does not exist."});
@@ -27,5 +29,5 @@ passport.serializeUser(function(user, done) {
 passport.deserializeUser(function(id, done) {
   User.getUserById(id, function(err, user) {
     done(err, user);
-  })
+  });
 });

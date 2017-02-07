@@ -4,8 +4,10 @@ var router = express.Router();
 var mongoose = require("mongoose");
 var path = require("path");
 var fs = require("fs");
+var Schema = mongoose.Schema;
 var User = require("../models/user");
 var Assignment = require("../models/assignment");
+var Collection = require("../models/collection");
 var globalFunctions = require("../controllers/globalFunctions");
 
 var ensureAuth = globalFunctions.ensureAuth;
@@ -105,25 +107,18 @@ router.post("/:type", function(req, res) {
   } else {
     // remove a student, check to see if any students were selected
     var idList = [];
-    console.log(Object.getOwnPropertyNames(req.body));
-    console.log(Object.getOwnPropertyNames(req.body).length);
     if(Object.getOwnPropertyNames(req.body).length > 0) {
       for(var prop in req.body) {
         idList.push(prop);
       }
-      console.log("idList is " + idList);
       for(var i = 0; i < idList.length; i++) {
         var id = idList[i];
         (function(id) {
-          console.log("inside IIFE: " + id);
-          User.findOne({_id: id}, function(err, user) {
+          User.remove({_id: id}, function(err) {
             if(err) throw err;
-            User.remove({_id: id}, function(err) {
-              if(err) throw err;
-            });
-            Assignment.remove({completedBy: {_id: id}}, function(err) {
-              if(err) throw err;
-            });
+          })
+          Assignment.remove({"completedBy.studentId": id}, function(err) {
+            if(err) throw err;
           });
         })(id);
       }

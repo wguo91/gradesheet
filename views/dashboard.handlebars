@@ -1,6 +1,6 @@
 <h2>Dashboard</h2>
-<h3>Welcome, {{{user.firstName}}}!</h3>
 {{#if user.admin}}
+  {{#if users}}
   <section class="dashboard">
     <h4>Newly Registered Students</h4>
     {{#each users}}
@@ -18,8 +18,10 @@
       {{/if}}
     {{/each}}
   </section>
+  {{else}}
+  {{/if}}
   <section class="dashboard">
-    <h4>Other Options</h4>
+    <h4>Class Options</h4>
     <div class="options-container">
       <div class="options">
         <h5>Manage Students</h5>
@@ -53,7 +55,31 @@
   </section>
   {{else}}
   <section class="dashboard">
-    <h4>Grades</h4>
-    <p>Wow, you failed already.</p>
+    <section class="grades-container">
+      <h2 class="grades-title">Grades</h2>
+      {{#if asgts}}
+      <table>
+        <tr>
+          <th>Assignment</th>
+          <th>Grade</th>
+          <th>Class Average</th>
+        </tr>
+        {{#each asgts}}
+        <tr>
+          <td>{{name}}</td>
+          <td>{{grade}}%</td>
+          <td>{{lookup ../avgArray @index}}%</td>
+        </tr>
+        {{/each}}
+        <tr class="grade-display">
+          <td colspan="3">Overall Grade: {{overallGrade}}%</td>
+        </tr>
+      </table>
+      {{else}}
+      <div>
+        <h4>You have no graded assignments.</h4>
+      </div>
+      {{/if}}
+    </section>
   </section>
   {{/if}}

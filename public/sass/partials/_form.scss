@@ -85,13 +85,13 @@
     text-align: left;
     margin-top: 1em;
   }
-  .grade-container {
+  .score-container {
     background-color: $cyan;
     padding: 1em;
     color: white;
     margin: 0.5em 0;
     text-align: left;
-    .grade-entry {
+    .score-entry {
       text-align: left;
       display: flex;
       input {

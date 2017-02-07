@@ -3,6 +3,8 @@ var express = require("express");
 var router = express.Router();
 var path = require("path");
 var User = require("../models/user");
+var Assignment = require("../models/assignment");
+var Collection = require("../models/collection");
 var globalFunctions = require("../controllers/globalFunctions");
 
 // set up multer
@@ -13,16 +15,35 @@ var upload = multer({storage: storage});
 // initialize global functions
 var ensureAuth = globalFunctions.ensureAuth;
 var capitalize = globalFunctions.capitalize;
+var calcGrade = globalFunctions.calcGrade;
+var getAvgArray = globalFunctions.getAvgArray;
 
 // user dashboard
 router.get("/", ensureAuth, function(req, res) {
-  User.getLastFiveEntries(function(err, users) {
-    if(err) throw err;
-    res.render("dashboard", {
-      title: "Gradesheet",
-      users: users
+  if(!req.user.admin) {
+    Assignment.find({"completedBy.studentId": req.user._id}, function(err, asgts) {
+      if(asgts.length > 0) {
+        Collection.find({}, function(err, collections) {
+          if(err) throw new Error("Collection.find({}) failed.");
+          var overallGrade = calcGrade(asgts);
+          var avgArray = getAvgArray(collections);
+          res.render("dashboard", {
+            asgts: asgts,
+            avgArray: avgArray,
+            overallGrade: overallGrade
+          });
+        });
+      }
     });
-  });
+  } else {
+    User.getFiveStudents(function(err, users) {
+      if(err) throw err;
+      res.render("dashboard", {
+        title: "Gradesheet",
+        users: users
+      });
+    });
+  }
 });
 
 // user settings
@@ -32,7 +53,8 @@ router.get("/settings", ensureAuth, function(req, res) {
   });
 });
 
-router.post("/settings/upload", ensureAuth, upload.single("avatar"), function(req, res, next) {
+router.post("/settings/upload", ensureAuth,
+  upload.single("avatar"), function(req, res, next) {
   var base64String = req.file.buffer.toString("base64");
   var mimetype = req.file.mimetype;
   var change = true;
