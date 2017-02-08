@@ -19,7 +19,9 @@ function isLoggedIn(req, res, next) {
 }
 // GET homepage
 router.get("/", function(req, res) {
-  res.render("index", "Gradesheet");
+  res.render("index", {
+    title: "Gradesheet"
+  }
 });
 
 // GET register page

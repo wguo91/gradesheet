@@ -16,12 +16,12 @@
           <ul>
             <li><img src="/images/gradesheet32.png" alt="gradesheet-logo"></li>
             {{#if user}}
-              <li><a href="/users">{{user.firstName}}</a></li>
-              <li><a href="/users/settings">Settings</a></li>
-              <li><a href="/logout">Logout</a></li>
+            <li><a href="/users">{{user.firstName}}</a></li>
+            <li><a href="/users/settings">Settings</a></li>
+            <li><a href="/logout">Logout</a></li>
             {{else}}
-              <li><a href="/login">Login</a></li>
-              <li><a href="/register">Register</a></li>
+            <li><a href="/login">Login</a></li>
+            <li><a href="/register">Register</a></li>
             {{/if}}
           </ul>
         </nav>
@@ -55,12 +55,15 @@
           {{/if}}
         </div>
         <main>
-          {{{body}}}
+        {{{body}}}
         </main>
       </div>
       <div class="footer-container">
         <p>&copy; 2017 Wilson Guo</p>
-        <p>Notice any bugs or errors? Please contact me at <a href="mailto:wguo91@gmail.com">wguo91@gmail.com</a>.</p>
+        <p>
+          Notice any bugs or errors? Please contact me at
+          <a href="mailto:wguo91@gmail.com">wguo91@gmail.com</a>.
+        </p>
       </div>
     </div>
   </body>
