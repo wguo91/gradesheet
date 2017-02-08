@@ -49,6 +49,11 @@ html {
         padding: 0 0.5em; }
     html body .capitalize {
       text-transform: capitalize; }
+    html body .index-container a {
+      color: #2E587F; }
+    html body .index-container a:hover,
+    html body .index-container a:focus {
+      color: #427FB7; }
 
 /**********************************
  * HEADER

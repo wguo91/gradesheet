@@ -24,6 +24,15 @@ html {
     .capitalize {
       text-transform: capitalize;
     }
+    .index-container {
+      a {
+        color: $dark-blue;
+      }
+      a:hover,
+      a:focus {
+        color: $dark-blue-hover;
+      }
+    }
   }
 }
 /**********************************
