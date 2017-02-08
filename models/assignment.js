@@ -36,14 +36,3 @@ var AssignmentSchema = Schema({
 
 var Assignment = mongoose.model("Assignment", AssignmentSchema);
 module.exports = Assignment;
-
-module.exports.removeAssignment = function(id) {
-  console.log("id is " + id);
-  Assignment.find().populate("completedBy._id").exec(function(err, asgt) {
-    Assignment.remove({completedBy: {_id: id}}, function(err, removed) {
-      if(err) throw err;
-      console.log("whatever");
-      console.log(JSON.stringify(removed, null, "\t"));
-    });
-  });
-};

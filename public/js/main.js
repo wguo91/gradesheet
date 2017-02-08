@@ -1,7 +1,10 @@
 "use strict";
+// upload avatar
 window.onload = function() {
-  document.getElementById("upload-avatar").addEventListener("click", uploadImage, false);
-  document.getElementById("upload-avatar-form").addEventListener("change", function() {
+  document.getElementById("upload-avatar")
+    .addEventListener("click", uploadImage, false);
+  document.getElementById("upload-avatar-form")
+    .addEventListener("change", function() {
     document.getElementById("upload-avatar-form").submit();
   }, false);
   function uploadImage(evt) {

@@ -4,12 +4,10 @@ var LocalStrategy = require("passport-local").Strategy;
 var User = require("../models/user");
 
 passport.use(new LocalStrategy(function(username, password, done) {
-  if(username === "" && password === "")
-    return done(null, false, "Please enter your username and password to login.");
   User.getUserByUsername(username, function(err, user) {
     if(err) return done(err);
     if(!user) return done(null, false, {message: "User does not exist."});
-    User.comparePassword(password, user.password, function(err, isMatch) {
+    User.comparePW(password, user.password, function(err, isMatch) {
       if(err) return done(err);
       // valid user object is passed along to trigger successRedirect
       // invalid authentication, pass an extra message along with callback
@@ -25,7 +23,8 @@ passport.use(new LocalStrategy(function(username, password, done) {
 passport.serializeUser(function(user, done) {
   done(null, user.id);
 });
-// retrieve entire user object with the help of the key returned by the done function
+
+// retrieve user object with the help of the key returned by the done function
 passport.deserializeUser(function(id, done) {
   User.getUserById(id, function(err, user) {
     done(err, user);

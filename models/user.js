@@ -69,20 +69,20 @@ module.exports.getUserById = function(id, callback) {
   User.findById(id, callback);
 };
 
-module.exports.comparePassword = function(candidatePassword, hash, callback) {
+module.exports.comparePW = function(candidatePassword, hash, callback) {
   bcrypt.compare(candidatePassword, hash, function(err, isMatch) {
     if(err) throw err;
     else callback(null, isMatch);
   });
 };
 
-module.exports.isCurrentPassword = function(username, candidatePassword, callback) {
+module.exports.isCurrPW = function(username, candidatePassword, callback) {
   User.findOne({username: username}, function(err, user) {
-    User.comparePassword(candidatePassword, user.password, callback);
+    User.comparePW(candidatePassword, user.password, callback);
   });
 };
 
-module.exports.updatePassword = function(username, candidatePassword, callback) {
+module.exports.updatePW = function(username, candidatePassword, callback) {
   bcrypt.genSalt(10, function(err, salt) {
     bcrypt.hash(candidatePassword, salt, function(err, hash) {
       if(err) throw err;
@@ -93,6 +93,7 @@ module.exports.updatePassword = function(username, candidatePassword, callback) 
   });
 };
 
+// obtain the five most recently registered students
 module.exports.getFiveStudents = function(callback) {
   User.find({admin: false}, null, {sort: "-createdAt", limit: 5}, callback);
 };

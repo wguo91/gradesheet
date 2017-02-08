@@ -22,37 +22,34 @@ var express = require("express"),
     setupController = require("./controllers/setupController");
 
 // set up mock data
-setupController.clearDatabase();
+setupController.restart();
 setupController.initialize();
 
 // set up mongoose
 console.log(config.databaseURI);
 mongoose.connect(config.databaseURI);
 
-// set up the view engine
+// set up the view directory
 app.set("views", path.join(__dirname, "views"));
+
 // set up custom helpers for handlebars
 var handlebars = expressHandlebars.create({
-  helpers: {
-  },
   defaultLayout: "layout"
 });
 app.engine("handlebars", handlebars.engine);
 app.set("view engine", "handlebars");
-
 
 // set up bodyParser and morgan middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(morgan("dev"));
 
-// set static folders
+// set static folder directory
 app.use(express.static(path.join(__dirname, "public")));
 
 // set up express-session (DO THIS BEFORE INITIALIZING PASSPORT)
 app.use(session({
-  // set static folders
-  secret: "secret", // used to sign the session ID cookie
+  secret: config.secret, // used to sign the session ID cookie
   saveUninitialized: true, // forces a session to be saved to the store
   resave: true // forces the session to be saved back to the store
 }));
@@ -120,6 +117,7 @@ app.use(expressValidator({
   }
 }));
 
+// set up routes
 app.use("/", routes);
 app.use("/users", users);
 app.use("/users/assignments", assignments);
@@ -128,4 +126,3 @@ app.use("/users/grades", grades);
 
 // set the port
 app.listen(config.port);
-console.log("Server is running on port " + config.port);

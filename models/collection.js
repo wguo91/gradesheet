@@ -7,15 +7,15 @@ var CollectionSchema = Schema({
     type: String,
     required: true
   },
-  gradeAverage: {
+  average: {
     type: Number,
     required: true
   },
-  gradePercentage: {
+  percentage: {
     type: Number,
     required: true
   },
-  totalPoints: {
+  total: {
     type: Number,
     required: true
   },
@@ -24,9 +24,6 @@ var CollectionSchema = Schema({
     ref: "Assignment",
     required: true
   }]
-},
-{
-  timestamps: true
 });
 
 var Collection = mongoose.model("Collection", CollectionSchema);

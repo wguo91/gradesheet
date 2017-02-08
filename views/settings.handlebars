@@ -3,11 +3,13 @@
   <h4>Profile</h4>
   <div class="settings">
     <section id="section-a">
-      <img class="avatar" src="data:{{user.avatar.img.mimetype}};base64,{{user.avatar.img.encodedData}}">
+      <img class="avatar" src="data:{{user.avatar.img.mimetype}};base64,{{user.avatar.img.encodedData}}" alt="avatar">
       <aside>
         <p>{{user.firstName}} {{user.lastName}}</p>
         <p>{{user.gender}}</p>
-        <form id="upload-avatar-form" method="post" enctype="multipart/form-data" action="/users/settings/upload">
+        {{!-- avatar submission form --}}
+        <form id="upload-avatar-form" method="post"
+          enctype="multipart/form-data" action="/users/settings/upload">
           <a id="upload-avatar" href="">Change Avatar</a>
           <p>(Avatars must be 100x100)</p>
           <input type="file" id="avatar" name="avatar">

@@ -56,11 +56,11 @@
   .grades-container {
     margin-bottom: 1em;
     padding: 0.5em;
-    h2.grades-title {
+    h2 {
       @include whiteOnDarkBlue();
       text-align: center;
       margin: 0;
-      padding: 0.5em 0.25em;
+      padding: 1em;
     }
     table {
       @include widthHeight(100%, 100%);

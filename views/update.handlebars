@@ -2,38 +2,32 @@
 <section class="settings-container">
   <h4>Update <span class="capitalize">{{updateField}}</span></h4>
   <div class="settings update-settings">
-    {{#if isPasswordUpdate}}
+    {{#if isPW}}
     <h5>Please confirm your identity by entering your current password.</h5>
     <form id="update-form" method="post"
       action="/users/settings/update/password">
-      <label class="form-label" for="currentPassword">
-        Current Password
-      </label>
-      <input class="form-input" id="currentPassword" name="currentPassword"
+      <label class="form-label" for="currPW">Current Password</label>
+      <input class="form-input" id="currPW" name="currPW"
         type="password" aria-required="true" placeholder="Current Password">
-      <label class="form-label" for="confirmPassword">
-        New Password
-      </label>
-      <input class="form-input" id="newPassword" name="newPassword"
+      <label class="form-label" for="newPW">New Password</label>
+      <input class="form-input" id="newPW" name="newPW"
         type="password" aria-required="true" placeholder="New Password">
-      <label class="form-label" for="confirmPassword">
-        Confirm Password
-      </label>
-      <input class="form-input" id="confirmPassword" name="confirmPassword"
+      <label class="form-label" for="confirmPW">Confirm Password</label>
+      <input class="form-input" id="confirmPW" name="confirmPW"
         type="password" aria-required="true" placeholder="Confirm Password">
-      <input type="submit" class="submit-btn" value="Update">
+      <input class="submit-btn" type="submit" value="Update">
     </form>
     {{else}}
-    <h5>Current <span class="capitalize">{{updateField}}</span>: {{currentValue}}</h5>
+    <h5>Current <span class="capitalize">{{updateField}}</span>: {{curr}}</h5>
     <form id="update-form" method="post"
       action="/users/settings/update/{{updateField}}">
       <label class="form-label" for="{{updateField}}">
         New {{updateField}}
       </label>
-      <input class="form-input" id="{{updateField}}" name="{{updateField}}"
-        type="text" aria-required="true" value="{{newValue}}"
-        placeholder="New {{updateField}}">
-      <input type="submit" class="submit-btn" value="Update">
+      <input class="form-input" type="text" id="{{updateField}}"
+        name="{{updateField}}" aria-required="true"
+        placeholder="New {{updateField}}" value="{{new}}">
+      <input class="submit-btn" type="submit" value="Update">
     </form>
     {{/if}}
   </div>

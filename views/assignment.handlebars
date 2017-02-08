@@ -1,47 +1,53 @@
 <h2><span class="capitalize">{{operation}}</span> Assignments</h2>
 <section class="assignments">
+  {{!-- begin add assignment --}}
   {{#if isAdd}}
   <section class="nav-container">
     <a href="/users/assignments/view">View all assignments</a>
     <a href="/users/assignments/remove">Remove an assignment</a>
   </section>
-  <p>Please note that if score fields are left blank, they will default to zero. All other fields must be filled out.</p>
-  <form id="assignment-form" method="post"
-    action="/users/assignments/add">
+  <p>
+    Please note that if score fields are left blank, they will default to zero.
+    All other fields must be filled out.
+  </p>
+  <form id="assignment-form" method="post" action="/users/assignments/add">
     <label class="form-label" for="asgtName">
       New Assignment
     </label>
-    <input class="form-input" type="text" id="asgtName"
-      name="asgtName" aria-required="true"
-      placeholder="Assignment Name" value="{{asgtName}}">
-    <label class="form-label" for="percentOfGrade">
+    <input class="form-input" type="text" id="asgtName" name="asgtName"
+      aria-required="true" placeholder="Assignment Name" value="{{asgtName}}">
+    <label class="form-label" for="percentage">
       Percentage of Grade
     </label>
-    <input type="text" class="form-input" id="gradePercentage"
-      name="gradePercentage" aria-required="true"
-      placeholder="Grade Percentage" value="{{gradePercentage}}">
-    <label class="form-label" for="totalScore">
+    <input class="form-input" type="text" id="percentage" name="percentage"
+      aria-required="true" placeholder="Grade Percentage"
+      value="{{percentage}}">
+    <label class="form-label" for="total">
       Total Score
     </label>
-    <input class="form-input" type="number" id="totalPoints"
-      name="totalPoints" aria-required="true" placeholder="Total Points Possible" value="{{totalPoints}}" max="999">
+    <input class="form-input" type="number" id="total" name="total"
+      aria-required="true" placeholder="Total Points Possible"
+      value="{{total}}" max="999">
     <h4>Grades</h4>
+    {{!-- looping through students --}}
     {{#each students}}
     <div class="score-container">
-    <p>{{lastName}}, {{firstName}}</p>
+      <p>{{lastName}}, {{firstName}}</p>
       <div class="score-entry">
-        <label class="form-label" for="studentScore">
+        {{!-- each score-entry input has a id and name of student[i]._id --}}
+        <label class="form-label" for="{{_id}}">
           Score
         </label>
-        <input class="form-input" type="number" id="{{_id}}"
-          name="{{_id}}" aria-required="true"
-          placeholder="Score" value="{{lookup ../scores _id}}"
-          max="999">
+        <input class="form-input" type="number" id="{{_id}}" name="{{_id}}"
+          aria-required="true" placeholder="Score"
+          value="{{lookup ../scores _id}}" max="999">
       </div>
     </div>
     {{/each}}
-    <input type="submit" class="submit-btn" value="Save Changes">
+    {{!-- end looping through students --}}
+    <input class="submit-btn" type="submit" value="Save Changes">
   </form>
+  {{!-- end add assignment, begin remove assignment --}}
   {{else if isRemove}}
   <section class="nav-container">
     <a href="/users/assignments/view">View all assignments</a>
@@ -51,54 +57,62 @@
   <p>Please select the assignment(s) you wish to remove.</p>
   <form id="assignment-form" method="post"
     action="/users/assignments/remove">
+    {{!-- loop through collections --}}
     {{#each collections}}
     <div class="checkbox">
       <input type="checkbox" name="{{_id}}" id="{{_id}}" value="checked">
       <label for="{{_id}}">{{name}}</label>
     </div>
     {{/each}}
-    <input type="submit" class="submit-btn" value="Save Changes">
+    {{!-- end loop through collections --}}
+    <input class="submit-btn" type="submit" value="Save Changes">
   </form>
-  {{else}}
+  {{else}} {{!-- no collections --}}
     <div>
       <h4>There are no existing assignments.</h4>
     </div>
   {{/if}}
+  {{!-- end remove assignment, begin view assignment--}}
   {{else}}
   <section class="nav-container">
     <a href="/users/assignments/add">Add an assignment</a>
     <a href="/users/assignments/remove">Remove an assignment</a>
   </section>
   <div class="table-container">
+    {{!-- loop through each collection --}}
     {{#each asgtListArr}}
-      <div class="accordion">
-        <div class="accordion-header">
-          <h4>{{lookup ../asgtNameArr @index}}</h4>
-          <p>Percentage of Grade: {{lookup ../gradePercentageArr @index}}%</p>
-          <p>Class Average: {{lookup ../gradeAverageArr @index}}%</p>
-        </div>
-        <table>
-          <tr>
-            <th>Student</th>
-            <th>Score</th>
-            <th>Total Points Possible</th>
-            <th>Grade</th>
-          </tr>
-          {{#each this}}
-          <tr>
-            <td>{{completedBy.lastName}}, {{completedBy.firstName}}</td>
-            <td>{{score}}</td>
-            <td>{{lookup ../../totalPointsArr @../index}}</td>
-            <td>{{grade}}%</td>
-          </tr>
-          {{/each}}
-        </table>
+    <div class="accordion">
+      <div class="accordion-header">
+        <h4>{{lookup ../asgtNameArr @index}}</h4>
+        <p>Percentage of Grade: {{lookup ../percentageArr @index}}%</p>
+        <p>Class Average: {{lookup ../averageArr @index}}%</p>
       </div>
-    {{else}}
+      <table>
+        <tr>
+          <th>Student</th>
+          <th>Score</th>
+          <th>Total Points Possible</th>
+          <th>Grade</th>
+        </tr>
+        {{!-- loop through each assignment --}}
+        {{#each this}}
+        <tr>
+          <td>{{completedBy.lastName}}, {{completedBy.firstName}}</td>
+          <td>{{score}}</td>
+          <td>{{lookup ../../totalArr @../index}}</td>
+          <td>{{grade}}%</td>
+        </tr>
+        {{/each}}
+        {{!-- end loop through each assignment --}}
+      </table>
+    </div>
+    {{else}} {{!-- no assignments to display --}}
     <div>
       <h4>No assignments have been created.</h4>
     </div>
     {{/each}}
+    {{!-- end loop through each collection --}}
   </div>
   {{/if}}
+  {{!-- end view assignment --}}
 </section>
