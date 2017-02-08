@@ -21,7 +21,7 @@ function isLoggedIn(req, res, next) {
 router.get("/", function(req, res) {
   res.render("index", {
     title: "Gradesheet"
-  }
+  });
 });
 
 // GET register page
