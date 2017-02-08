@@ -50,7 +50,8 @@ html {
     html body .capitalize {
       text-transform: capitalize; }
     html body .index-container a {
-      color: #2E587F; }
+      color: #2E587F;
+      text-decoration: none; }
     html body .index-container a:hover,
     html body .index-container a:focus {
       color: #427FB7; }
