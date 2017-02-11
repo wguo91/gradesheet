@@ -18,7 +18,7 @@ function isLoggedIn(req, res, next) {
   else return next();
 }
 // GET homepage
-router.get("/", function(req, res) {
+router.get("/", isLoggedIn, function(req, res) {
   res.render("index", {
     title: "Gradesheet"
   });

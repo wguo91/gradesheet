@@ -26,7 +26,6 @@ setupController.restart();
 setupController.initialize();
 
 // set up mongoose
-console.log(config.databaseURI);
 mongoose.connect(config.databaseURI);
 
 // set up the view directory
@@ -39,7 +38,7 @@ var handlebars = expressHandlebars.create({
 app.engine("handlebars", handlebars.engine);
 app.set("view engine", "handlebars");
 
-// set up bodyParser and morgan middleware
+// set up body-parser and morgan middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(morgan("dev"));
@@ -123,6 +122,17 @@ app.use("/users", users);
 app.use("/users/assignments", assignments);
 app.use("/users/students", students);
 app.use("/users/grades", grades);
+app.use(function(req, res) {
+  res.status(404);
+  res.render("404", {
+    title: "404 - Page Not Found"
+  });
+});
+app.use(function(req, res) {
+  res.status(500);
+  res.render("500", {
+    title: "500 - Internal Server Error"
+  });
+});
 
-// set the port
 app.listen(config.port);

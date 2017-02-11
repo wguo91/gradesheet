@@ -6,11 +6,12 @@
     <a href="/users/assignments/view">View all assignments</a>
     <a href="/users/assignments/remove">Remove an assignment</a>
   </section>
-  <p>
+  <p class="width-60">
     Please note that if score fields are left blank, they will default to zero.
     All other fields must be filled out.
   </p>
-  <form id="assignment-form" method="post" action="/users/assignments/add">
+  <form class="width-60" id="assignment-form" method="post"
+    action="/users/assignments/add">
     <label class="form-label" for="asgtName">
       New Assignment
     </label>
@@ -47,6 +48,8 @@
     {{!-- end looping through students --}}
     <input class="submit-btn" type="submit" value="Save Changes">
   </form>
+  {{!-- prevent multiple POST requests at once --}}
+  <script src="/js/disable.js"></script>
   {{!-- end add assignment, begin remove assignment --}}
   {{else if isRemove}}
   <section class="nav-container">
@@ -54,8 +57,10 @@
     <a href="/users/assignments/add">Add an assignment</a>
   </section>
   {{#if collections}}
-  <p>Please select the assignment(s) you wish to remove.</p>
-  <form id="assignment-form" method="post"
+  <p class="width-60">
+    Please select the assignment(s) you wish to remove.
+  </p>
+  <form class="width-60" id="assignment-form" method="post"
     action="/users/assignments/remove">
     {{!-- loop through collections --}}
     {{#each collections}}
@@ -67,6 +72,8 @@
     {{!-- end loop through collections --}}
     <input class="submit-btn" type="submit" value="Save Changes">
   </form>
+  {{!-- prevent multiple POST requests at once --}}
+  <script src="/js/disable.js"></script>
   {{else}} {{!-- no collections --}}
     <div>
       <h4>There are no existing assignments.</h4>
@@ -78,7 +85,7 @@
     <a href="/users/assignments/add">Add an assignment</a>
     <a href="/users/assignments/remove">Remove an assignment</a>
   </section>
-  <div class="table-container">
+  <div class="table-container width-70">
     {{!-- loop through each collection --}}
     {{#each asgtListArr}}
     <div class="accordion">

@@ -1,7 +1,12 @@
 <h2>Dashboard</h2>
 {{#if user.admin}}
   {{#if users}}
-  <section class="dashboard">
+  <section class="dashboard width-55">
+    <p class="welcome-msg">
+      Welcome to your dashboard. This is where you will find basic
+      information about your class and its students. Please scroll down below
+      to add or remove assignments, and enroll or drop students.
+    </p>
     <h4>Newly Registered Students</h4>
     {{#each users}}
       {{#if this.admin}}
@@ -20,7 +25,7 @@
   </section>
   {{else}}
   {{/if}}
-  <section class="dashboard">
+  <section class="dashboard width-55 class-options">
     <h4>Class Options</h4>
     <div class="options-container">
       <div class="options">
@@ -57,6 +62,11 @@
   <section class="dashboard">
     <section class="grades-container">
       <h2 class="grades-title">My Grades</h2>
+      <p class="welcome-msg">
+        Welcome to your dashboard. This is where you will find basic
+        information about your class and your grades. If you have any
+        questions regarding your grade, please contact your teacher.
+      </p>
       {{#if asgts}}
       <table>
         <tr>

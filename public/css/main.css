@@ -25,9 +25,6 @@ time, mark, audio, video {
   font: inherit;
   vertical-align: baseline; }
 
-/* font-related variables */
-/* colors */
-/* mixins */
 /**********************************
  * GENERAL
  **********************************/
@@ -49,41 +46,53 @@ html {
         padding: 0 0.5em; }
     html body .capitalize {
       text-transform: capitalize; }
-    html body .index-container a {
-      color: #2E587F;
-      text-decoration: none; }
-    html body .index-container a:hover,
-    html body .index-container a:focus {
-      color: #427FB7; }
+    html body .index-container {
+      border: 0.2em solid #2E587F;
+      border-radius: 0.2em;
+      padding: 1em; }
+      html body .index-container a {
+        color: #2E587F;
+        text-decoration: none; }
+      html body .index-container a:hover,
+      html body .index-container a:focus {
+        color: #427FB7; }
+      html body .index-container p {
+        text-align: left;
+        margin: 0.25em 0; }
+    html body .footer-container small {
+      font-size: 0.75em;
+      padding: 0 1em; }
 
 /**********************************
  * HEADER
  **********************************/
 header {
   background-color: #2E587F; }
-  header ul {
-    list-style-type: none;
+  header nav {
     display: flex;
-    justify-content: flex-end;
     align-items: center; }
-    header ul li {
-      display: inline-block;
-      text-align: center; }
-      header ul li img {
-        display: block;
-        padding: 0 1em; }
-      header ul li a {
-        color: #FFFFFF;
-        padding: 1em;
-        display: block;
-        text-decoration: none;
-        text-transform: uppercase;
-        letter-spacing: 0.1em; }
-      header ul li a:hover,
-      header ul li a:focus {
-        background-color: #427FB7; }
-    header ul li:first-child {
-      flex-grow: 1; }
+    header nav .home-btn {
+      padding: 0 1em;
+      flex: 1; }
+    header nav ul {
+      display: flex;
+      list-style-type: none;
+      align-items: center; }
+      header nav ul li {
+        display: inline-block;
+        text-align: center; }
+        header nav ul li a {
+          color: #FFFFFF;
+          padding: 1em;
+          display: block;
+          text-decoration: none;
+          text-transform: uppercase;
+          letter-spacing: 0.1em; }
+        header nav ul li a:hover,
+        header nav ul li a:focus {
+          background-color: #427FB7; }
+      header nav ul li:first-child {
+        flex-grow: 1; }
 
 /**********************************
  * MAIN
@@ -134,9 +143,6 @@ header {
 .message .error.center {
   text-align: center; }
 
-/* font-related variables */
-/* colors */
-/* mixins */
 /**********************************
 * FORMS (REGISTRATION, LOGIN,
 * UPDATE, ASSIGNMENT, STUDENT)
@@ -231,6 +237,48 @@ header {
   padding: 0.5em;
   margin: 0.5em 0;
   width: 100%; }
+#registration-form .btns,
+#login-form .btns,
+#update-form .btns,
+#assignment-form .btns,
+#student-form .btns {
+  display: flex;
+  justify-content: center;
+  margin: 1em 0; }
+  #registration-form .btns .submit-btn,
+  #login-form .btns .submit-btn,
+  #update-form .btns .submit-btn,
+  #assignment-form .btns .submit-btn,
+  #student-form .btns .submit-btn {
+    background-color: #2E587F;
+    color: #FFFFFF;
+    font-size: 1em;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    border: none;
+    margin: 0.5em;
+    padding: 0.75em 1.25em;
+    border-radius: 0.2em; }
+    #registration-form .btns .submit-btn :hover,
+    #registration-form .btns .submit-btn :focus,
+    #login-form .btns .submit-btn :hover,
+    #login-form .btns .submit-btn :focus,
+    #update-form .btns .submit-btn :hover,
+    #update-form .btns .submit-btn :focus,
+    #assignment-form .btns .submit-btn :hover,
+    #assignment-form .btns .submit-btn :focus,
+    #student-form .btns .submit-btn :hover,
+    #student-form .btns .submit-btn :focus {
+      background-color: #427FB7; }
+  #registration-form .btns .back-btn,
+  #login-form .btns .back-btn,
+  #update-form .btns .back-btn,
+  #assignment-form .btns .back-btn,
+  #student-form .btns .back-btn {
+    background-color: #2E587F;
+    color: #FFFFFF;
+    margin: 0.5em;
+    text-decoration: none; }
 #registration-form .submit-btn,
 #login-form .submit-btn,
 #update-form .submit-btn,
@@ -238,11 +286,12 @@ header {
 #student-form .submit-btn {
   background-color: #2E587F;
   color: #FFFFFF;
+  font-family: "PT Sans", sans-serif;
   font-size: 1em;
   -moz-appearance: none;
   -webkit-appearance: none;
-  margin: 1em 0;
   border: none;
+  margin: 0.5em;
   padding: 0.75em 1.25em;
   border-radius: 0.2em; }
   #registration-form .submit-btn :hover,
@@ -257,10 +306,13 @@ header {
   #student-form .submit-btn :focus {
     background-color: #427FB7; }
 
-/* for buttons */
-#update-form,
-#student-form {
+/* for buttons and checkboxes */
+#student-form,
+#update-form {
   text-align: center; }
+  #student-form .checkbox,
+  #update-form .checkbox {
+    text-align: left; }
 
 #assignment-form h4 {
   text-align: left;
@@ -277,9 +329,6 @@ header {
     #assignment-form .score-container .score-entry input {
       margin-right: 0.25em; }
 
-/* font-related variables */
-/* colors */
-/* mixins */
 /**********************************
  * DASHBOARD/STUDENTS
  **********************************/
@@ -294,6 +343,8 @@ header {
     text-align: center;
     letter-spacing: 0.05em;
     padding: 0.5em 0; }
+  .dashboard p.welcome-msg {
+    margin-bottom: 1em; }
   .dashboard .entry {
     border: 0.1em solid #000000;
     padding: 0.5em;
@@ -353,9 +404,9 @@ header {
         text-align: right;
         font-weight: bold; }
 
-/* font-related variables */
-/* colors */
-/* mixins */
+.dashboard.class-options {
+  margin-top: 1em; }
+
 /**********************************
 * ASSIGNMENTS
 **********************************/
@@ -404,9 +455,6 @@ header {
     .assignments .table-container .accordion table tr:nth-child(even) {
       background-color: #F2F2F2; }
 
-/* font-related variables */
-/* colors */
-/* mixins */
 /**********************************
 * GRADES
 **********************************/
@@ -431,9 +479,6 @@ header {
       text-align: right;
       font-weight: bold; }
 
-/* font-related variables */
-/* colors */
-/* mixins */
 /**********************************
 * STUDENTS
 **********************************/
@@ -495,9 +540,6 @@ header {
     color: #000000;
     text-align: center; }
 
-/* font-related variables */
-/* colors */
-/* mixins */
 /**********************************
 * SETTINGS
 **********************************/
@@ -524,8 +566,8 @@ header {
     .settings-container .settings #section-d div {
       flex-grow: 1; }
   .settings-container .update-settings h5 {
-    text-align: center;
-    padding: 1em; }
+    text-align: left;
+    padding-top: 1em; }
   .settings-container h4 {
     background-color: #2E587F;
     color: #FFFFFF;
@@ -533,9 +575,6 @@ header {
     padding: 0.5em 0;
     letter-spacing: 0.05em; }
 
-/* font-related variables */
-/* colors */
-/* mixins */
 /**********************************
  * FOOTER
  **********************************/
@@ -550,5 +589,29 @@ header {
   width: 100%; }
   .footer-container a {
     color: #FFFFFF; }
+
+/**********************************
+* MEDIA QUERIES
+**********************************/
+@media only screen and (min-width: 768px) {
+  .width-35 {
+    width: 35%;
+    margin: 0 auto; }
+
+  .width-50 {
+    width: 50%;
+    margin: 0 auto; }
+
+  .width-55 {
+    width: 55%;
+    margin: 0 auto; }
+
+  .width-60 {
+    width: 60%;
+    margin: 0 auto; }
+
+  .width-70 {
+    width: 70%;
+    margin: 0 auto; } }
 
 /*# sourceMappingURL=main.css.map */

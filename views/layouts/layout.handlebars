@@ -13,8 +13,12 @@
     <div class="wrapper">
       <header class="header-container">
         <nav>
+          <div class="home-btn">
+            <a class="home-a" href="/">
+              <img src="/images/gradesheet32.png" alt="gradesheet-logo">
+            </a>
+          </div>
           <ul>
-            <li><img src="/images/gradesheet32.png" alt="gradesheet-logo"></li>
             {{#if user}}
             <li><a href="/users">{{user.firstName}}</a></li>
             <li><a href="/users/settings">Settings</a></li>
@@ -32,7 +36,7 @@
           <h1>Gradesheet</h1>
         </div>
         {{!-- error messages --}}
-        <div class="message">
+        <div class="message width-55">
           {{#if success_msg}}
             <div class="success">{{success_msg}}</div>
           {{/if}}
@@ -60,10 +64,15 @@
       </div>
       <div class="footer-container">
         <p>&copy; 2017 Wilson Guo</p>
-        <p>
+        <small>
+          Please update your browser to the latest version of IE, Edge,
+          Firefox, Chrome, or Safari for the best possible user experience.
+        </small>
+        <br>
+        <small>
           Notice any bugs or errors? Please contact me at
           <a href="mailto:wguo91@gmail.com">wguo91@gmail.com</a>.
-        </p>
+        </small>
       </div>
     </div>
   </body>

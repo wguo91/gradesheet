@@ -1,5 +1,5 @@
 <h2>Settings</h2>
-<section class="settings-container">
+<section class="settings-container width-55">
   <h4>Update <span class="capitalize">{{updateField}}</span></h4>
   <div class="settings update-settings">
     {{#if isPW}}
@@ -15,7 +15,10 @@
       <label class="form-label" for="confirmPW">Confirm Password</label>
       <input class="form-input" id="confirmPW" name="confirmPW"
         type="password" aria-required="true" placeholder="Confirm Password">
-      <input class="submit-btn" type="submit" value="Update">
+        <div class="btns">
+          <input class="submit-btn" type="submit" value="Update">
+          <button class="submit-btn" id="back-btn">Back</button>
+        </div>
     </form>
     {{else}}
     <h5>Current <span class="capitalize">{{updateField}}</span>: {{curr}}</h5>
@@ -27,8 +30,12 @@
       <input class="form-input" type="text" id="{{updateField}}"
         name="{{updateField}}" aria-required="true"
         placeholder="New {{updateField}}" value="{{new}}">
-      <input class="submit-btn" type="submit" value="Update">
+      <div class="btns">
+        <input class="submit-btn" type="submit" value="Update">
+        <button class="submit-btn" id="back-btn">Back</button>
+      </div>
     </form>
     {{/if}}
   </div>
 </section>
+<script src="/js/button.js"></script>

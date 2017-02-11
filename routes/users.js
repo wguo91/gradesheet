@@ -64,11 +64,12 @@ router.get("/settings", ensureAuth, function(req, res) {
 // GET user update page
 router.get("/settings/update/:type", ensureAuth, function(req, res) {
   var updateField = req.params.type;
+  var capitalizedField = capitalize(updateField);
   var isPW = updateField.charAt(0) === "p";
   res.render("update", {
-    title: "Gradesheet - Change " + updateField,
+    title: "Gradesheet - Change " + capitalizedField,
     curr: req.user[updateField],
-    updateField: updateField,
+    updateField: capitalizedField,
     isPW: isPW
   });
 });

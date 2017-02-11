@@ -1,119 +1,130 @@
-<h2><span class="capitalize">{{operation}}</span> Students</h2>
-<section class="students-container">
+<h2><span class="capitalize">{{operation}}</span> Student</h2>
   {{!-- add students --}}
   {{#if isAdd}}
-  <section class="nav-container">
-    <a href="/users/students/view">View enrolled students</a>
-    <a href="/users/students/remove">Remove a student</a>
+  <section class="students-container">
+    <section class="nav-container">
+      <a href="/users/students/view">View enrolled students</a>
+      <a href="/users/students/remove">Remove a student</a>
+    </section>
+    <form class="width-35" id="student-form" method="post"
+      action="/users/students/add">
+      <div>
+        <label class="form-label" for="firstname">First Name</label>
+        <input class="form-input" type="text" id="firstname" name="firstName"
+          aria-required="true" placeholder="First Name" value="{{firstName}}">
+      </div>
+      <div>
+        <label class="form-label" for="lastname">Last Name</label>
+        <input class="form-input" type="text" id="lastname" name="lastName"
+          aria-required="true" placeholder="Last Name" value={{lastName}}>
+      </div>
+      <div>
+        <label class="form-label" for="email">Email</label>
+        <input class="form-input" type="email" id="email" name="email"
+          aria-required="true" placeholder="Email"  value={{email}}>
+      </div>
+      <div>
+        <label class="form-label" for="username">Username</label>
+        <input class="form-input" type="text" id="username" name="username"
+          aria-required="true" placeholder="Username" value="{{username}}">
+      </div>
+      <div>
+        <label class="form-label" for="password">Password</label>
+        <input class="form-input" type="password" id="password" name="password"
+          aria-required="true" placeholder="Password">
+      </div>
+      <div>
+        <label class="form-label" for="confirmPassword">Confirm Password</label>
+        <input class="form-input" type="password" id="confirmPassword"
+          name="confirmPassword" aria-required="true"
+          placeholder="Confirm Password">
+      </div>
+      <div class="radio">
+        {{!-- "remembers" gender selection --}}
+        {{#if male}}
+          <input type="radio" id="male" name="gender" aria-required="true"
+            value="male" checked="true">
+          <label for="male">Male</label>
+          <input type="radio" id="female" name="gender" aria-required="true"
+            value="female">
+          <label for="female">Female</label>
+        {{else if female}}
+          <input type="radio" id="male" name="gender" aria-required="true"
+            value="male">
+          <label for="male">Male</label>
+          <input type="radio" id="female" name="gender" aria-required="true"
+            value="female" checked="true">
+          <label for="female">Female</label>
+        {{else}}
+          <input type="radio" id="male" name="gender"
+            aria-required="true" value="male">
+          <label for="male">Male</label>
+          <input type="radio" id="female" name="gender" aria-required="true"
+            value="female">
+          <label for="female">Female</label>
+        {{/if}}
+      </div>
+      <input class="submit-btn" type="submit" value="Add student">
+    </form>
   </section>
-  <form id="student-form" method="post" action="/users/students/add">
-    <div>
-      <label class="form-label" for="firstname">First Name</label>
-      <input class="form-input" type="text" id="firstname" name="firstName"
-        aria-required="true" placeholder="First Name" value="{{firstName}}">
-    </div>
-    <div>
-      <label class="form-label" for="lastname">Last Name</label>
-      <input class="form-input" type="text" id="lastname" name="lastName"
-        aria-required="true" placeholder="Last Name" value={{lastName}}>
-    </div>
-    <div>
-      <label class="form-label" for="email">Email</label>
-      <input class="form-input" type="email" id="email" name="email"
-        aria-required="true" placeholder="Email"  value={{email}}>
-    </div>
-    <div>
-      <label class="form-label" for="username">Username</label>
-      <input class="form-input" type="text" id="username" name="username"
-        aria-required="true" placeholder="Username" value="{{username}}">
-    </div>
-    <div>
-      <label class="form-label" for="password">Password</label>
-      <input class="form-input" type="password" id="password" name="password"
-        aria-required="true" placeholder="Password">
-    </div>
-    <div>
-      <label class="form-label" for="confirmPassword">Confirm Password</label>
-      <input class="form-input" type="password" id="confirmPassword"
-        name="confirmPassword" aria-required="true"
-        placeholder="Confirm Password">
-    </div>
-    <div class="radio">
-      {{!-- "remembers" gender selection --}}
-      {{#if male}}
-        <input type="radio" id="male" name="gender" aria-required="true"
-          value="male" checked="true">
-        <label for="male">Male</label>
-        <input type="radio" id="female" name="gender" aria-required="true"
-          value="female">
-        <label for="female">Female</label>
-      {{else if female}}
-        <input type="radio" id="male" name="gender" aria-required="true"
-          value="male">
-        <label for="male">Male</label>
-        <input type="radio" id="female" name="gender" aria-required="true"
-          value="female" checked="true">
-        <label for="female">Female</label>
-      {{else}}
-        <input type="radio" id="male" name="gender"
-          aria-required="true" value="male">
-        <label for="male">Male</label>
-        <input type="radio" id="female" name="gender" aria-required="true"
-          value="female">
-        <label for="female">Female</label>
-      {{/if}}
-    </div>
-    <input class="submit-btn" type="submit" value="Add student">
-  </form>
+  {{!-- prevent multiple POST requests at once --}}
+  <script src="/js/disable.js"></script>
   {{!-- remove students --}}
   {{else if isRemove}}
-  {{#if students}}
-  <section class="nav-container">
-    <a href="/users/students/view">View enrolled students</a>
-    <a href="/users/students/add">Add a student</a>
-  </section>
-  <form id="student-form" method="post" action="/users/students/remove">
-    <p>Please select the student(s) you wish to remove.</p>
-    {{#each students}}
-    <div class="checkbox">
-      <input type="checkbox" name="{{_id}}" id="{{_id}}" value="checked">
-      <label for="{{_id}}">
-        {{lastName}}, {{firstName}}<br>
-        Username: {{username}}<br>
-        Email address: {{email}}
-      </label>
+  <section class="students-container">
+    {{#if students}}
+    <section class="nav-container">
+      <a href="/users/students/view">View enrolled students</a>
+      <a href="/users/students/add">Add a student</a>
+    </section>
+    <form class="width-55" id="student-form" method="post"
+      action="/users/students/remove">
+      <p>Please select the student(s) you wish to remove.</p>
+      {{#each students}}
+      <div class="checkbox">
+        <input type="checkbox" name="{{_id}}" id="{{_id}}" value="checked">
+        <label for="{{_id}}">
+          {{lastName}}, {{firstName}}<br>
+          Username: {{username}}<br>
+          Email address: {{email}}
+        </label>
+      </div>
+      {{/each}}
+      <input class="submit-btn" type="submit" value="Remove selected students">
+    </form>
+    {{else}}
+    <div>
+      <h4>There are no enrolled students.</h4>
     </div>
-    {{/each}}
-    <input class="submit-btn" type="submit" value="Remove selected students">
-  </form>
-  {{else}}
-  <div>
-    <h4>There are no enrolled students.</h4>
-  </div>
+  </section>
   {{/if}}
+  {{!-- prevent multiple POST requests at once --}}
+  <script src="/js/disable.js"></script>
   {{!-- view students --}}
   {{else}}
-  <section class="nav-container">
-    <a href="/users/students/add">Add a student</a>
-    <a href="/users/students/remove">Remove a student</a>
+  <section class="students-container width-55">
+    <section class="nav-container">
+      <a href="/users/students/add">Add a student</a>
+      <a href="/users/students/remove">Remove a student</a>
+    </section>
+    {{#if students}}
+    <h4>Enrolled Students</h4>
+    {{#each students}}
+    <div class="entry">
+      <img src="data:{{avatar.img.mimetype}};base64,{{this.avatar.img.encodedData}}" alt="avatar">
+      <aside>
+        <p>{{lastName}}, {{firstName}} </p>
+        <a class="grades-link" href="/users/grades/{{_id}}">View grades</a>
+        <p>Username: {{username}}</p>
+        <p>Email: {{email}}</p>
+      </aside>
+    </div>
+    {{/each}}
+    {{else}}
+    <div>
+      <h4>There are no enrolled students.</h4>
+    </div>
+    {{/if}}
   </section>
-  {{#if students}}
-  <h4>Enrolled Students</h4>
-  {{#each students}}
-  <div class="entry">
-    <img src="data:{{avatar.img.mimetype}};base64,{{this.avatar.img.encodedData}}" alt="avatar">
-    <aside>
-      <p>{{lastName}}, {{firstName}} </p>
-      <a class="grades-link" href="/users/grades/{{_id}}">View grades</a>
-      <p>Username: {{username}}</p>
-      <p>Email: {{email}}</p>
-    </aside>
-  </div>
-  {{/each}}
-  {{else}}
-  <div>
-    <h4>There are no enrolled students.</h4>
-  </div>
-  {{/if}}
   {{/if}}
 </section>
